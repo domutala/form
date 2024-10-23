@@ -1,0 +1,55 @@
+@import "./v-bottom-sheet";
+
+@import url("https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-chubby/css/uicons-solid-chubby.css");
+@import url("https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-chubby/css/uicons-regular-chubby.css");
+@import url("https://cdn-uicons.flaticon.com/2.6.0/uicons-thin-chubby/css/uicons-thin-chubby.css");
+@import url("https://cdn-uicons.flaticon.com/2.6.0/uicons-thin-rounded/css/uicons-thin-rounded.css");
+
+html,
+body {
+  overflow: auto;
+
+  // ::-webkit-scrollbar {
+  //   width: 0px;
+  //   background: transparent;
+  // }
+  background-color: rgba(var(--v-theme-background));
+}
+
+svg {
+  fill: currentColor;
+}
+
+i {
+  display: flex;
+}
+
+a {
+  text-decoration: none;
+  color: rgba(var(--v-theme-primary));
+}
+
+@font-face {
+  font-family: "Berlin";
+  src: url("../fonts/Berlin.ttf");
+}
+
+.skeleton {
+  height: 20px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    110deg,
+    rgba(var(--v-theme-surface)) 8%,
+    rgba(var(--v-theme-surface), 0.5) 18%,
+    rgba(var(--v-theme-surface)) 33%
+  );
+  background-size: 200% 100%;
+  animation: 1.5s shine linear infinite;
+
+  @keyframes shine {
+    to {
+      background-position-x: -200%;
+    }
+  }
+}

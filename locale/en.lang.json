@@ -1,0 +1,6 @@
+{
+  "welcome": "Welcome",
+  "error": {
+    "field_required": "Required field"
+  }
+}

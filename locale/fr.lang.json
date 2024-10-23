@@ -1,0 +1,100 @@
+{
+  "site": {
+    "description": "Automatiser et simplifier vos formulaires"
+  },
+
+  "signin": "Se connecter",
+  "signup": "Créer un compte",
+  "forgetPassword": "Mot de passe oublié",
+  "welcome": "Bienvenue",
+  "userSettings": "Paramètres utilisateurs",
+  "logout": "Se déconnecter",
+  "add": "Ajouter",
+  "label": "Libellé",
+  "content": "Contenue",
+  "rename": "Renommer",
+  "cancel": "Annuler",
+  "save": "Enregistrer",
+  "remove": "Supprimer",
+  "title": "Enregistrer",
+  "email": "Email",
+  "login": "S'identifier",
+  "password": "Mot de passe",
+  "passwordConfirmation": "Confirmer mot de passe",
+  "name": "Nom",
+  "send": "Envoyer",
+  "signWithGithub": "Continuer avec Githup",
+  "signWithGoogle": "Continuer avec Google",
+  "fieldRequired": "Ce champ est requis",
+  "passwordNotMatch": "les deux mots de passe ne correspondent pas",
+  "updateYourPassword": "Modifier votre mot de passe",
+  "passwordUpdated": "Votre mot de passe a été modfifié avec succès",
+  "successCopied": "Copié avec succès",
+  "key": "Clé",
+  "type": "Type",
+  "min": "Minimum",
+  "max": "Maximum",
+  "length": "Longueur",
+  "maxLength": "Longueur maximale",
+  "minLength": "Longueur minimale",
+  "value": "valeur",
+
+  "theme": {
+    "title": "Thème",
+    "dark": "Sombre",
+    "light": "Claire",
+    "default": "Par défaut"
+  },
+
+  "organization": {
+    "title": {
+      "organizations": "Organisations",
+      "organization": "Organisation",
+      "selectOrganization": "Selectionner une organisation"
+    },
+
+    "remove": {
+      "warning": "La suppression de cette organisation est irreverssible. Cela supprimera aussi tous les formulaires et tous les saisies"
+    }
+  },
+
+  "model": {
+    "title": {
+      "model": "Modèle",
+      "models": "Modèles",
+      "update": "Modifier",
+      "settings": "paramètres",
+      "test": "Tester le formulaire",
+      "inputs": "Exploitation",
+      "inputLink": "Lien de saisie",
+      "select": "Selectionner un modèle"
+    },
+
+    "remove": {
+      "title": "Supprimer le modèle",
+      "warning": "La suppression de ce formulaire est irreverssible. Cela supprimera aussi tous les saisies"
+    },
+
+    "schema": {
+      "title": {
+        "add": "Ajouter un champ",
+        "fontSize": "taille de la police",
+        "isFloat": "est-il un décimal",
+        "fileAccept": "type (ex : image/jpeg | .png | .docx)",
+        "fileMaxsize": "Poids maximal",
+        "fieldRequired": "Champ requis"
+      },
+
+      "types": {
+        "varchar": "varchar",
+        "text": "Texte",
+        "number": "Nombre",
+        "boolean": "Case à cocher",
+        "date": "Date",
+        "paragraph": "Paragraphe",
+        "select": "Choix multiple",
+        "file": "Fichier"
+      }
+    }
+  }
+}
