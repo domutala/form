@@ -41,7 +41,7 @@ useSeoMeta({ title: t("organization.title.organizations") });
           >
             <ui-organization-remove :organization="item">
               <template #activator="{ props }">
-                <v-tooltip text="remove" location="top">
+                <v-tooltip :text="$t('remove')" location="top">
                   <template v-slot:activator="{ props: tooltipProps }">
                     <v-btn
                       icon
@@ -50,16 +50,34 @@ useSeoMeta({ title: t("organization.title.organizations") });
                       color="red"
                       v-bind="mergeProps(tooltipProps, props)"
                     >
-                      <i class="fi fi-rr-trash" style="font-size: 18px"></i>
+                      <svg-icon name="trash" width="20" height="20" />
                     </v-btn>
                   </template>
                 </v-tooltip>
               </template>
             </ui-organization-remove>
 
+            <ui-organization-member-invite :organization="item">
+              <template #activator="{ props }">
+                <v-tooltip text="add" location="top">
+                  <template v-slot:activator="{ props: tooltipProps }">
+                    <v-btn
+                      icon
+                      size="x-small"
+                      variant="text"
+                      color="dark"
+                      v-bind="mergeProps(tooltipProps, props)"
+                    >
+                      <svg-icon name="user-add" width="20" height="20" />
+                    </v-btn>
+                  </template>
+                </v-tooltip>
+              </template>
+            </ui-organization-member-invite>
+
             <ui-organization-create :organization="item">
               <template #activator="{ props }">
-                <v-tooltip text="rename" location="top">
+                <v-tooltip :text="$t('rename')" location="top">
                   <template v-slot:activator="{ props: tooltipProps }">
                     <v-btn
                       icon
@@ -82,7 +100,7 @@ useSeoMeta({ title: t("organization.title.organizations") });
               v-for="(member, m) in item.members"
               :key="m"
               :organization="item"
-              :id="member"
+              :member="member"
             >
               <template #default="{ user, fetching }">
                 <v-list-item
@@ -129,14 +147,50 @@ useSeoMeta({ title: t("organization.title.organizations") });
                           {{ user.email }}
                         </div>
                       </div>
+
+                      <v-spacer />
+                      <ui-organization-member-state
+                        :member="member"
+                        :organization="item"
+                      />
                     </div>
                   </v-list-item>
-                  <div
-                    v-if="member === item.owner"
-                    style="position: absolute; top: -12px; right: 10px"
-                  >
-                    <v-chip size="x-small" color="primary" variant="flat">
-                      owner
+                  <div style="position: absolute; bottom: -12px; left: 10px">
+                    <v-chip
+                      v-if="member.uid === item.owner"
+                      size="x-small"
+                      color="primary"
+                      variant="flat"
+                    >
+                      {{ $t("organization.title.owner") }}
+                    </v-chip>
+                    <v-chip
+                      v-else-if="member.state === 'invited'"
+                      size="x-small"
+                      color="warning"
+                      variant="flat"
+                    >
+                      {{
+                        member.uid === auth.user.value?.uid
+                          ? $t("organization.member.title.invitationReceived")
+                          : $t("organization.member.title.invitationSent")
+                      }}
+                    </v-chip>
+                    <v-chip
+                      v-if="member.state === 'leave'"
+                      size="x-small"
+                      color="grey-lighten-2"
+                      variant="flat"
+                    >
+                      {{ $t("organization.member.state.leave") }}
+                    </v-chip>
+                    <v-chip
+                      v-if="member.state === 'disabled'"
+                      size="x-small"
+                      color="grey-lighten-2"
+                      variant="flat"
+                    >
+                      {{ $t("organization.member.state.disabled") }}
                     </v-chip>
                   </div>
                 </div>

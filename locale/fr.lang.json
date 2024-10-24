@@ -3,6 +3,14 @@
     "description": "Automatiser et simplifier vos formulaires"
   },
 
+  "functionalitys": [
+    {
+      "title": "onsectetur adipisicing elit.",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa magni eaque earum maxime sint tempora reprehenderit maiores facilis quae quidem recusandae, cupiditate qui soluta ullam, est illo, aperiam dolores placeat."
+    }
+  ],
+
+  "poweredBy": "Powered by",
   "signin": "Se connecter",
   "signup": "Créer un compte",
   "forgetPassword": "Mot de passe oublié",
@@ -38,6 +46,8 @@
   "maxLength": "Longueur maximale",
   "minLength": "Longueur minimale",
   "value": "valeur",
+  "accept": "Accepter",
+  "decline": "Décliner",
 
   "theme": {
     "title": "Thème",
@@ -50,7 +60,25 @@
     "title": {
       "organizations": "Organisations",
       "organization": "Organisation",
-      "selectOrganization": "Selectionner une organisation"
+      "selectOrganization": "Selectionner une organisation",
+      "memberSuccesAdded": "Une invitation à été envoyée",
+      "owner": "Propriétaire"
+    },
+
+    "member": {
+      "title": {
+        "disabled": "Désactiver",
+        "leave": "Quitter",
+        "declined": "Décliner",
+        "accepted": "Accepter",
+        "invitationSent": "Invitation envoyée",
+        "invitationReceived": "Invitation reçue"
+      },
+      "state": {
+        "leave": "A quitté",
+        "disabled": "Désactivé.e",
+        "declined": "Ivitation déclinée"
+      }
     },
 
     "remove": {

@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+const runtimeConfig = useRuntimeConfig();
+</script>
+
 <template>
   <v-app>
     <div
@@ -17,8 +21,21 @@
       <v-progress-circular color="dark" indeterminate />
 
       <div style="position: absolute; bottom: 20px; left: 30px">
-        <v-btn icon variant="text" :to="{ name: 'index' }" target="_blank">
-          <svg-icon class="text-primary" name="logo" width="32" height="32" />
+        <v-btn
+          color="dark"
+          size="large"
+          variant="text"
+          rounded="0"
+          target="_blank"
+          :to="{ name: 'index' }"
+        >
+          <template #prepend>
+            <svg-icon name="logo" width="32" height="32" />
+          </template>
+          <div style="font-size: 12px">
+            {{ $t("poweredBy") }}
+            <div>{{ runtimeConfig.public.appName }}</div>
+          </div>
         </v-btn>
       </div>
     </div>

@@ -224,14 +224,14 @@ function copyLinkModel() {
           <ui-model-selecter />
         </div>
 
-        <v-app-bar-title v-else>
+        <div v-else>
           <span v-if="$route.name === 'dashboard-organizations'">
             {{ $t("organization.title.organizations") }}
           </span>
           <span v-else-if="$route.name === 'dashboard-user-settings'">
             {{ $t("userSettings") }}
           </span>
-        </v-app-bar-title>
+        </div>
       </v-app-bar-title>
 
       <v-tooltip

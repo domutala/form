@@ -5,6 +5,7 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
+      appName: process.env.NUXT_APP_NAME,
       apiUrl: process.env.NUXT_API_URL,
       firebaseApiKey: process.env.NUXT_PUBLIC_FIREBASE_API_KEY,
       firebaseAuthDomain: process.env.NUXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -29,7 +30,7 @@ export default defineNuxtConfig({
     head: {
       titleTemplate: "%s %separator %siteName - %siteDescription",
       templateParams: {
-        siteName: process.env.APP_NAME,
+        siteName: process.env.NUXT_APP_NAME,
         siteDescription: "Automatiser et simplifier vos formulaires",
         separator: "·",
       },
@@ -59,8 +60,6 @@ export default defineNuxtConfig({
       { code: "en", name: "English", file: "./locale/en.lang.json" },
     ],
   },
-
-  swiper: { modules: ["effect-cards"] },
 
   piniaPersistedstate: { storage: "localStorage" },
 });

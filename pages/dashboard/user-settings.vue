@@ -145,14 +145,6 @@ async function savePassword() {
           autocomplete="new-password"
           v-model="passwords.password"
         >
-          <template
-            #append-inner
-            v-if="displayName !== auth.user.value?.displayName"
-          >
-            <v-btn rounded @click="saveName" :loading="displayNameSubmitting">
-              {{ $t("save") }}
-            </v-btn>
-          </template>
         </v-text-field>
         <v-text-field
           :label="$t('passwordConfirmation')"

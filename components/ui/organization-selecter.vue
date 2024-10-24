@@ -1,7 +1,8 @@
 <script lang="ts" setup>
+const auth = useAuth();
+
 const isDialogOpen = ref(false);
 const submitting = ref(false);
-
 const data = ref({ name: "" });
 
 async function submit() {
@@ -15,6 +16,17 @@ async function submit() {
     submitting.value = false;
   }
 }
+
+const organizations = computed(() => {
+  return Store.organization.organizations.filter((org) => {
+    const i = org.members.findIndex(
+      (m) => m.uid === auth.user.value?.uid && m.state === "accepted"
+    );
+
+    if (i === -1) return false;
+    return true;
+  });
+});
 </script>
 
 <template>
@@ -22,7 +34,7 @@ async function submit() {
     <template v-slot:activator="{ props }">
       <v-btn color="dark" variant="text" border rounded="pill" v-bind="props">
         <span v-if="!Store.organization.current">
-          {{ $t("organization.selectOrganization") }}
+          {{ $t("organization.title.selectOrganization") }}
         </span>
         <span>
           {{ Store.organization.current?.name }}
@@ -44,7 +56,7 @@ async function submit() {
         </div>
         <v-list class="pa-2" bg-color="transparent">
           <v-list-item
-            v-for="(item, index) in Store.organization.organizations"
+            v-for="(item, index) in organizations"
             :key="index"
             :value="index"
             rounded="lg"

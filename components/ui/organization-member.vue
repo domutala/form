@@ -6,7 +6,14 @@ const { $firebase } = useNuxtApp();
 
 const props = defineProps({
   organization: { type: Object as PropType<IOrganization>, required: true },
-  id: { type: String, required: true },
+  member: {
+    type: Object as PropType<{
+      uid: string;
+      admin?: boolean;
+      deactive?: boolean;
+    }>,
+    required: true,
+  },
 });
 
 const fetching = ref(false);
@@ -17,7 +24,7 @@ async function mounted() {
   try {
     fetching.value = true;
     user.value = await Api.fetch({
-      url: `member/${props.organization.id}/${props.id}`,
+      url: `member/${props.organization.id}/${props.member.uid}`,
     });
   } finally {
     fetching.value = false;

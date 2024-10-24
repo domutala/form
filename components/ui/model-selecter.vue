@@ -2,6 +2,17 @@
 import FormModelTitle from "~/components/form/model/title.vue";
 
 const createForm = ref<any>();
+const auth = useAuth();
+
+const isAccepted = computed(() => {
+  if (!Store.organization.current) return false;
+
+  return (
+    Store.organization.current.members.filter(
+      (m) => m.state === "accepted" && m.uid === auth.user.value?.uid
+    ).length !== 0
+  );
+});
 
 function openCreateForm() {
   if (!createForm.value) return;
@@ -11,7 +22,7 @@ function openCreateForm() {
 
 <template>
   <v-menu
-    v-if="Store.organization.current"
+    v-if="isAccepted && Store.organization.current"
     offset="5"
     :close-on-content-click="false"
   >

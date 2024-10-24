@@ -92,6 +92,7 @@ export const useAuth = () => {
           provider.email,
           provider.password
         );
+
         return await onSuccess(result);
       } catch (e) {
         throw e;

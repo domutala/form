@@ -5,11 +5,22 @@ import type { IOrganization } from "~/models/Organization";
 const store = defineStore(
   "organization",
   () => {
+    const auth = useAuth();
     const organizations = ref<IOrganization[]>([]);
 
     const _current = ref(0);
     const current = computed(() => {
-      return organizations.value[_current.value];
+      const org = organizations.value[_current.value];
+
+      if (org) {
+        const i = org.members.findIndex(
+          (m) => m.uid === auth.user.value?.uid && m.state === "accepted"
+        );
+
+        if (i === -1) return;
+      }
+
+      return org;
     });
 
     async function setCurrent(id?: number) {
@@ -119,6 +130,33 @@ const store = defineStore(
 
       return model;
     }
+    async function addMember(params: { email: string; organization: string }) {
+      const organization = await Api.fetch<IOrganization>({
+        method: "post",
+        body: params,
+        url: `member/${params.organization}/invite/${params.email}`,
+      });
+
+      push(organization);
+
+      return organization;
+    }
+
+    async function setMemberState(params: {
+      state: string;
+      organization: string;
+      uid: string;
+    }) {
+      const organization = await Api.fetch<IOrganization>({
+        method: "post",
+        body: { state: params.state, uid: params.uid },
+        url: `member/${params.organization}/set-state/`,
+      });
+
+      push(organization);
+
+      return organization;
+    }
 
     async function list() {
       try {
@@ -157,6 +195,9 @@ const store = defineStore(
       fetch,
       create,
       remove,
+
+      addMember,
+      setMemberState,
 
       list,
     };

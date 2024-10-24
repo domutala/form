@@ -41,7 +41,7 @@ async function submit() {
     const schemaOptions = [...(props.model.schemaOptions || [])];
     schemaOptions[props.index] = _schemaOptions.value;
 
-    const e = await Store.organization.createModel({
+    await Store.organization.createModel({
       schemaOptions,
       id: props.model.id,
       organizationId: Store.organization.current?.id,
@@ -61,10 +61,12 @@ async function remove() {
     const schemaOptions = [...(props.model.schemaOptions || [])];
     schemaOptions.splice(props.index, 1);
 
-    const model = await Store.organization.createModel({
+    await Store.organization.createModel({
       schemaOptions,
       id: props.model.id,
     });
+
+    isDialogOpen.value = false;
   } finally {
     submitting.value = false;
   }
