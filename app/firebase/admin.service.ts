@@ -19,4 +19,9 @@ export class FirebaseAuthService {
     const user = await this.firebaseAdmin.auth().getUser(uid);
     return user;
   }
+
+  async getUserByEmail(email: string) {
+    const user = await this.firebaseAdmin.auth().getUserByEmail(email);
+    return user;
+  }
 }

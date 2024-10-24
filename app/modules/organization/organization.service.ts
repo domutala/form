@@ -43,10 +43,13 @@ export class OrganizationService {
   }
 
   async list() {
-    const accounts = await this.repository._find({
+    const organizations = await this.repository._find({
       member: this.request.user.uid,
     });
 
-    return accounts;
+    return await this.repository._removeUnaccessibleData(
+      organizations,
+      this.request.user.uid,
+    );
   }
 }

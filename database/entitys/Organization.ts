@@ -2,6 +2,13 @@ import { Column, Entity, JoinTable, ManyToMany, OneToMany } from "typeorm";
 import { Base } from "./Base";
 import { Model } from "./Model";
 
+export type MemberState =
+  | "invited"
+  | "disabled"
+  | "accepted"
+  | "declined"
+  | "leave";
+
 @Entity()
 export class Organization extends Base {
   @Column({ type: "varchar" })
@@ -13,6 +20,11 @@ export class Organization extends Base {
   @OneToMany(() => Model, (model) => model.organization)
   models: Model[];
 
-  @Column({ type: "varchar", array: true, default: "{}" })
-  members: string[];
+  @Column({ type: "json", default: "[]" })
+  members: {
+    uid: string;
+    admin?: boolean;
+    state: MemberState;
+    owner?: boolean;
+  }[];
 }

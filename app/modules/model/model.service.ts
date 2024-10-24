@@ -34,6 +34,14 @@ export class ModelService {
 
     if (!organization) throw new NotFoundException("organization_not_found");
 
+    if (
+      !organization.members.filter(
+        (m) => m.uid === this.request.user.uid && m.state === "accepted",
+      ).length
+    ) {
+      throw new UnauthorizedException("not_authorized");
+    }
+
     const model = await this.repository._create({
       ...body,
       createBy: this.request.user.uid,
@@ -45,8 +53,6 @@ export class ModelService {
 
   async get(body: any) {
     const model = await this.repository._findOne({ id: body.id });
-    console.log(model);
-
     return model;
   }
 
@@ -54,20 +60,16 @@ export class ModelService {
     const model = await this.repository._findOne({ id: body.id });
     if (!model) throw new NotFoundException("model_not_found");
 
-    if (!model.organization.members.includes(this.request.user.uid)) {
+    if (
+      !model.organization.members.filter(
+        (m) => m.uid === this.request.user.uid && m.state === "accepted",
+      ).length
+    ) {
       throw new UnauthorizedException("not_authorized");
     }
 
     await model.remove();
 
     return model;
-  }
-
-  async list() {
-    const accounts = await this.repository._find({
-      member: this.request.user.uid,
-    });
-
-    return accounts;
   }
 }

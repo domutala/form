@@ -54,9 +54,7 @@ export class ModelRepository extends Repository<Model> {
       );
     }
 
-    if (params.member) {
-      queryBuilder.andWhere(`'${params.member}'=ANY(members)`);
-    }
+    queryBuilder.orderBy("model.createdAt", "ASC");
 
     const sessions = await queryBuilder.getMany();
 
